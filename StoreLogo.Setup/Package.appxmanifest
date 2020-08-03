@@ -7,12 +7,12 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="StoreLogo.App"
+    Name="StoreLogo.App.Demo"
     Publisher="CN=Michael Denny"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>StoreLogo App</DisplayName>
+    <DisplayName>StoreLogo App Demo</DisplayName>
     <PublisherDisplayName>Michael Denny</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -31,12 +31,12 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="StoreLogo App"
-        Description="StoreLogo App"
+        DisplayName="StoreLogo App Demo"
+        Description="StoreLogo App for Demo"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  ShortName="StoreLogo App" Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png">
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  ShortName="StoreLogo Demo" Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo"/>
             <uap:ShowOn Tile="wide310x150Logo"/>
