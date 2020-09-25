@@ -37,6 +37,8 @@ function Update-Images ([string]$UnpackPath, [string]$TenantName) {
 # VARIABLES
 # ----------------
 
+$currentDir = Get-Location
+
 $version = "1.0.0.0"
 $tenantName = "CustomerA" # Demo, CustomerA, CustomerB
 
@@ -44,22 +46,20 @@ $commandMakeAppx = "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.19041.0\x6
 $commandSignTool = "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe"
 $commandMakePri = "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.19041.0\x64\makepri.exe"
 
-$certificatePfx = ".\StoreLogo.Setup\StoreLogo.Setup_TemporaryKey.pfx"
+$certificatePfx = Join-Path $currentDir "StoreLogo.Setup\StoreLogo.Setup_TemporaryKey.pfx"
 
-$msixFile = ".\StoreLogo.Setup\AppPackages\StoreLogo.Setup_1.0.0.0_x64_Test\StoreLogo.Setup_1.0.0.0_x64.msix"
+$msixFile = Join-Path $currentDir "StoreLogo.Setup\AppPackages\StoreLogo.Setup_1.0.0.0_x64_Test\StoreLogo.Setup_1.0.0.0_x64.msix"
 
-$msixOutputFile = ".\Output\StoreLogo.Setup_1.0.0.0_x64.msix"
+$msixOutputFile = Join-Path $currentDir "Output\StoreLogo.Setup_1.0.0.0_x64.msix"
 
-$unpackRelativePath = ".\Unpack"
+$unpackPath = Join-Path $currentDir "Unpack"
 
 # ----------------
 # MAIN SCRIPT
 # ----------------
 
 Write-Host "Start unpack commmand for the main msix"
-& $commandMakeAppx unpack /o /p $msixFile /d $unpackRelativePath
-
-$unpackPath =  Resolve-Path -Path $unpackRelativePath
+& $commandMakeAppx unpack /o /p $msixFile /d $unpackPath
 
 if ($tenantName -ne "Demo") {
     Write-Host "Change AppxManifest.xml of all the msix packages"
