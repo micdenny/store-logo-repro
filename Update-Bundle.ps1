@@ -37,19 +37,21 @@ function Update-Images ([string]$UnpackPath, [string]$TenantName) {
 # VARIABLES
 # ----------------
 
+$currentDir = Get-Location
+
 $version = "1.0.0.0"
 $tenantName = "CustomerA" # Demo, CustomerA, CustomerB
 
 $commandMakeAppx = "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.19041.0\x64\makeappx.exe"
 $commandSignTool = "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe"
 
-$certificatePfx = ".\StoreLogo.Setup\StoreLogo.Setup_TemporaryKey.pfx"
+$certificatePfx = Join-Path $currentDir "StoreLogo.Setup\StoreLogo.Setup_TemporaryKey.pfx"
 
-$msixBundleFile = ".\StoreLogo.Setup\AppPackages\StoreLogo.Setup_1.0.0.0_Test\StoreLogo.Setup_1.0.0.0_x64.msixbundle"
+$msixBundleFile = Join-Path $currentDir "StoreLogo.Setup\AppPackages\StoreLogo.Setup_1.0.0.0_Test\StoreLogo.Setup_1.0.0.0_x64.msixbundle"
 
-$msixBundleOutputFile = ".\Output\StoreLogo.Setup_1.0.0.0_x64.msixbundle"
+$msixBundleOutputFile = Join-Path $currentDir "Output\StoreLogo.Setup_1.0.0.0_x64.msixbundle"
 
-$unbundlePath = ".\Unbundle"
+$unbundlePath = Join-Path $currentDir "Unbundle"
 
 $msixFile = "$unbundlePath\StoreLogo.Setup_1.0.0.0_x64.msix"
 $msixScale100File = "$unbundlePath\StoreLogo.Setup_1.0.0.0_scale-100.msix"
@@ -57,11 +59,12 @@ $msixScale125File = "$unbundlePath\StoreLogo.Setup_1.0.0.0_scale-125.msix"
 $msixScale150File = "$unbundlePath\StoreLogo.Setup_1.0.0.0_scale-150.msix"
 $msixScale400File = "$unbundlePath\StoreLogo.Setup_1.0.0.0_scale-400.msix"
 
-$unpackPath = ".\Unpack\x64"
-$unpackScale100Path = ".\Unpack\scale-100"
-$unpackScale125Path = ".\Unpack\scale-125"
-$unpackScale150Path = ".\Unpack\scale-150"
-$unpackScale400Path = ".\Unpack\scale-400"
+$unpackBasePath = Join-Path $currentDir "Unpack"
+$unpackPath = "$unpackBasePath\x64"
+$unpackScale100Path = "$unpackBasePath\scale-100"
+$unpackScale125Path = "$unpackBasePath\scale-125"
+$unpackScale150Path = "$unpackBasePath\scale-150"
+$unpackScale400Path = "$unpackBasePath\scale-400"
 
 # ----------------
 # MAIN SCRIPT
