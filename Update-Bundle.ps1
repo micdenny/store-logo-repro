@@ -48,9 +48,9 @@ $commandMakePri = "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.19041.0\x64
 
 $certificatePfx = Join-Path $currentDir "StoreLogo.Setup\StoreLogo.Setup_TemporaryKey.pfx"
 
-$msixFile = Join-Path $currentDir "StoreLogo.Setup\AppPackages\StoreLogo.Setup_1.0.0.0_x64_Test\StoreLogo.Setup_1.0.0.0_x64.msix"
+$msixFile = Join-Path $currentDir "StoreLogo.Setup\AppPackages\StoreLogo.Setup_$($version)_x64_Test\StoreLogo.Setup_$($version)_x64.msix"
 
-$msixOutputFile = Join-Path $currentDir "Output\StoreLogo.Setup_1.0.0.0_x64.msix"
+$msixOutputFile = Join-Path $currentDir "Output\StoreLogo.Setup_$($version)_x64.msix"
 
 $unpackPath = Join-Path $currentDir "Unpack"
 
